@@ -3,14 +3,21 @@ import SidebarWrapper from "./wrapper";
 import SidebarToggle from "./toggle";
 import Recommended from "./recommended";
 import { getRecommended } from "@/lib/get-recommended";
+import { getAllFollowingUsers } from "@/services/follow-service";
+import FollowingUser from "./following-user";
 
 const Sidebar = async () => {
   const users = await getRecommended();
 
+  const followingUsers = await getAllFollowingUsers();
+
   return (
     <SidebarWrapper>
       <SidebarToggle />
-      <Recommended data={users} />
+      <div className="space-y-4">
+        <FollowingUser data={followingUsers} />
+        <Recommended data={users} />
+      </div>
     </SidebarWrapper>
   );
 };
