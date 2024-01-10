@@ -49,9 +49,9 @@ const UserItem = ({ user, showBadge, isLive }: UserItemProps) => {
 UserItem.Skeleton = function UserItemSkeleton() {
   return (
     <div className="w-full h-[48px] flex gap-x-2 items-center">
-      <Skeleton className="min-h-[32px] min-w-[32px] rounded-full" />
+      <Skeleton className="h-[32px] w-[32px] rounded-full" />
       <div className="flex-1">
-        <Skeleton className="min-h-[32px] w-full" />
+        <Skeleton className="h-[32px] w-full" />
       </div>
     </div>
   );

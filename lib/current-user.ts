@@ -5,7 +5,7 @@ export async function currentUser() {
   try {
     const user = await ClerkCurrentUser();
 
-    if (!user || user.username) {
+    if (!user || !user.username) {
       throw new Error("Could not find user");
     }
 

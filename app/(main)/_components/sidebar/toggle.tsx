@@ -1,6 +1,7 @@
 "use client";
 import ActionTooltip from "@/components/action-tooltip";
 import { Button } from "@/components/ui/button";
+import { Skeleton } from "@/components/ui/skeleton";
 import { useSidebarStore } from "@/store/use-sidebar";
 import { ArrowLeftFromLineIcon, ArrowRightFromLineIcon } from "lucide-react";
 import React from "react";
@@ -30,6 +31,17 @@ const SidebarToggle = () => {
           </ActionTooltip>
         </div>
       )}
+    </div>
+  );
+};
+
+SidebarToggle.Skeleton = function SidebarToggleSkeleton() {
+  return (
+    <div className="px-5 py-4">
+      <div className="flex justify-between items-center gap-x-4">
+        <Skeleton className="h-[32px] flex-1" />
+        <Skeleton className="h-[32px] w-[70px]" />
+      </div>
     </div>
   );
 };
