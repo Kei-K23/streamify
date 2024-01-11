@@ -47,16 +47,13 @@ const UserItem = ({ user, showBadge, isLive }: UserItemProps) => {
 };
 
 UserItem.Skeleton = function UserItemSkeleton() {
-  const { collapsed } = useSidebarStore();
   return (
     <div className="w-full h-[48px] flex gap-x-2 items-center ">
       <>
         <Skeleton className="h-[32px] w-[32px]" />
-        {!collapsed && (
-          <div className="hidden lg:flex-1">
-            <Skeleton className="h-[32px] w-full" />
-          </div>
-        )}
+        <div className="hidden flex-1 lg:block">
+          <Skeleton className="h-[32px] w-full" />
+        </div>
       </>
     </div>
   );
