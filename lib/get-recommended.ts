@@ -23,7 +23,7 @@ export async function getRecommended() {
           },
           {
             NOT: {
-              following: {
+              followings: {
                 some: {
                   followerId: user.id,
                 },
