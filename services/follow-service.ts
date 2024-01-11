@@ -36,7 +36,7 @@ export async function isFollowingUser(id: string) {
     });
 
     if (!otherUser) {
-      return false;
+      throw new Error("Cannot find the user to follow");
     }
 
     if (otherUser.id === user?.id) {
@@ -129,7 +129,7 @@ export async function unFollowUser(id: string) {
     });
 
     if (!otherUser) {
-      throw new Error("Could not find user to un-follow");
+      throw new Error("Could not find user to unfollow");
     }
 
     if (otherUser.id === user?.id) {
@@ -160,8 +160,6 @@ export async function unFollowUser(id: string) {
 
     return unFollowing;
   } catch (e: any) {
-    console.log(e);
-
-    throw new Error("Something went wrong when following user");
+    throw new Error("Something went wrong when unfollowing user");
   }
 }
