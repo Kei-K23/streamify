@@ -14,8 +14,6 @@ export async function onFollow(id: string) {
     }
     return followedUser;
   } catch (e: any) {
-    console.log(e);
-
     throw new Error("Internal server error", e);
   }
 }
@@ -31,8 +29,6 @@ export async function onUnFollow(id: string) {
     }
     return unFollowedUser;
   } catch (e: any) {
-    console.log(e);
-
     throw new Error("Internal server error", e);
   }
 }
