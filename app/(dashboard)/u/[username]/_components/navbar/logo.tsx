@@ -15,7 +15,7 @@ const Logo = () => {
         <span className="text-center text-[14px] md:text-base font-bold">
           Streamify
         </span>
-        <span className="text-xs text-muted-foreground">Let&apos;s stream</span>
+        <span className="text-xs text-muted-foreground">Creator Dashboard</span>
       </div>
     </Link>
   );
