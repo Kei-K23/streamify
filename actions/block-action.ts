@@ -1,7 +1,6 @@
 "use server";
 
 import { blockUser, unBlockUser } from "@/services/block-service";
-import { followUser, unFollowUser } from "@/services/follow-service";
 import { revalidatePath } from "next/cache";
 
 export async function onBlock(id: string) {
@@ -19,7 +18,7 @@ export async function onBlock(id: string) {
   }
 }
 
-export async function onUnFollow(id: string) {
+export async function onUnBlock(id: string) {
   try {
     const unBlockedUser = await unBlockUser(id);
 

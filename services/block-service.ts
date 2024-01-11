@@ -45,8 +45,8 @@ export async function isBlockUser(id: string) {
 
     const existingBlock = await db.block.findFirst({
       where: {
-        blockerId: user?.id,
-        blockingId: id,
+        blockerId: otherUser.id,
+        blockingId: user?.id,
       },
     });
 
@@ -84,7 +84,7 @@ export async function blockUser(id: string) {
       where: {
         blockerId_blockingId: {
           blockerId: user?.id!,
-          blockingId: id,
+          blockingId: otherUser.id,
         },
       },
     });
@@ -96,7 +96,7 @@ export async function blockUser(id: string) {
     const newBlocking = await db.block.create({
       data: {
         blockerId: user?.id!,
-        blockingId: id,
+        blockingId: otherUser.id,
       },
       include: {
         blocking: true,
@@ -105,8 +105,6 @@ export async function blockUser(id: string) {
 
     return newBlocking;
   } catch (e: any) {
-    console.log(e);
-
     throw new Error("Something went wrong when blocking user");
   }
 }
@@ -139,7 +137,7 @@ export async function unBlockUser(id: string) {
       where: {
         blockerId_blockingId: {
           blockerId: user?.id!,
-          blockingId: id,
+          blockingId: otherUser.id,
         },
       },
     });
