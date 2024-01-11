@@ -34,7 +34,7 @@ const Recommended = ({ data }: RecommendedProps) => {
 
 Recommended.Skeleton = function recommendedSkeleton() {
   return (
-    <div className="space-y-4 mt-2">
+    <div className="space-y-4 mt-2 px-5">
       {[...Array(5)].map((_, i) => (
         <UserItem.Skeleton key={i} />
       ))}
