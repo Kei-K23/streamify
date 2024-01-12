@@ -33,7 +33,7 @@ const Navigation = () => {
   ];
 
   return (
-    <div className="space-y-4 mt-2">
+    <div className="mt-2">
       {navigation.map((n) => (
         <NavigationItem data={n} key={n.label} isActive={pathname === n.href} />
       ))}
@@ -43,7 +43,7 @@ const Navigation = () => {
 
 Navigation.Skeleton = function NavigationSkeleton() {
   return (
-    <div className="space-y-4 mt-2">
+    <div className="space-y-3 mt-2">
       {[...Array(4)].map((_, i) => (
         <NavigationItem.Skeleton key={i} />
       ))}

@@ -25,7 +25,7 @@ const ToggleSettingCard = ({ label, field, value }: ToggleSettingCardProps) => {
 
   return (
     <div className="w-full rounded-md bg-zinc-800 px-4 md:px-8 py-3 md:py-4 flex justify-between items-center">
-      <p className="text-lg md:text-xl">{label}</p>
+      <p className="text-base md:text-lg">{label}</p>
       <Switch disabled={isPending} onCheckedChange={onChange} checked={value}>
         {value ? "On" : "Off"}
       </Switch>
@@ -34,7 +34,7 @@ const ToggleSettingCard = ({ label, field, value }: ToggleSettingCardProps) => {
 };
 
 ToggleSettingCard.Skeleton = function ToggleSettingCardSkeleton() {
-  return <Skeleton className="w-full rounded-md h-[30px]" />;
+  return <Skeleton className="w-full rounded-md h-[40px]" />;
 };
 
 export default ToggleSettingCard;
