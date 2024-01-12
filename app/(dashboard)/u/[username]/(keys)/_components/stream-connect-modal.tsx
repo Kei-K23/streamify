@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState, useTransition } from "react";
 
 import {
   Dialog,
@@ -22,8 +22,29 @@ import {
 
 import { Button } from "@/components/ui/button";
 import { MailWarningIcon } from "lucide-react";
+import { IngressInput } from "livekit-server-sdk";
+import { createIngress } from "@/actions/ingress-action";
+import { toast } from "sonner";
+
+const RTMP = String(IngressInput.RTMP_INPUT);
+const WHIP = String(IngressInput.WHIP_INPUT);
+
+type IngressType = typeof RTMP | typeof WHIP;
 
 const StreamConnectModal = () => {
+  const [ingressType, setIngressType] = useState<IngressType>(RTMP);
+  const [isPending, startTransition] = useTransition();
+
+  function onClick() {
+    startTransition(() => {
+      createIngress(parseInt(ingressType))
+        .then(() => toast.success("Successfully created ingress"))
+        .catch(() =>
+          toast.error("Something went wrong when creating ingress!")
+        );
+    });
+  }
+
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -38,13 +59,13 @@ const StreamConnectModal = () => {
             Generate the key for your stream.
           </DialogDescription>
         </DialogHeader>
-        <Select>
+        <Select value={ingressType} onValueChange={(e) => setIngressType(e)}>
           <SelectTrigger className="w-full">
             <SelectValue placeholder="Ingress Type" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="RTMP">RTMP</SelectItem>
-            <SelectItem value="WHIP">WHIP</SelectItem>
+            <SelectItem value={RTMP}>RTMP</SelectItem>
+            <SelectItem value={WHIP}>WHIP</SelectItem>
           </SelectContent>
         </Select>
 
@@ -60,7 +81,13 @@ const StreamConnectModal = () => {
           <DialogClose asChild>
             <Button size={"sm"}>Cancel</Button>
           </DialogClose>
-          <Button size={"sm"} variant={"primary"} className="mb-4 sm:mb-0">
+          <Button
+            disabled={isPending}
+            onClick={onClick}
+            size={"sm"}
+            variant={"primary"}
+            className="mb-4 sm:mb-0"
+          >
             Generate
           </Button>
         </DialogFooter>
