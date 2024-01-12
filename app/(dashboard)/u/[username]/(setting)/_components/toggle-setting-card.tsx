@@ -24,7 +24,7 @@ const ToggleSettingCard = ({ label, field, value }: ToggleSettingCardProps) => {
   }
 
   return (
-    <div className="w-full rounded-md bg-zinc-800 px-4 md:px-8 py-3 md:py-4 flex justify-between items-center">
+    <div className="w-full rounded-md bg-zinc-800 px-4 md:px-8 py-3 md:py-4 flex justify-between items-center gap-x-3">
       <p className="text-base md:text-lg">{label}</p>
       <Switch disabled={isPending} onCheckedChange={onChange} checked={value}>
         {value ? "On" : "Off"}

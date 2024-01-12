@@ -45,12 +45,9 @@ export async function updateStream(values: Omit<Partial<Stream>, "id">) {
     revalidatePath(`/u/${user.username}/setting`);
     revalidatePath(`/${user.username}`);
     revalidatePath(`/`);
-    console.log(updatedStream, values);
 
     return updatedStream;
   } catch (e: any) {
-    console.log(e);
-
     throw new Error("Internal server error!");
   }
 }

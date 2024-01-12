@@ -20,7 +20,6 @@ interface NavigationItemProps {
 const NavigationItem = ({ data, isActive }: NavigationItemProps) => {
   const { collapsed } = useDashboardSidebarStore();
   const ICON = data.icon;
-  console.log(collapsed);
 
   return (
     <Link

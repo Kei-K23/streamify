@@ -113,8 +113,6 @@ export async function followUser(id: string) {
 
     return newFollowing;
   } catch (e: any) {
-    console.log(e);
-
     throw new Error("Something went wrong when following user");
   }
 }
