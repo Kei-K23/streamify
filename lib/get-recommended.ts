@@ -1,9 +1,9 @@
-import { User } from "@prisma/client";
+import { Stream, User } from "@prisma/client";
 import { currentUser } from "./current-user";
 import { db } from "./db";
 
 export async function getRecommended() {
-  let users: User[];
+  let users;
   let user: User | null;
 
   try {
@@ -41,12 +41,18 @@ export async function getRecommended() {
           },
         ],
       },
+      include: {
+        stream: true,
+      },
       orderBy: {
         createdAt: "desc",
       },
     });
   } else {
     users = await db.user.findMany({
+      include: {
+        stream: true,
+      },
       orderBy: {
         createdAt: "desc",
       },

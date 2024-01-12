@@ -52,54 +52,58 @@ export async function resetIngresses(hostIdentity: string) {
 }
 
 export async function createIngress(ingressType: IngressInput) {
-  const user = await currentUser();
+  try {
+    const user = await currentUser();
 
-  await resetIngresses(user.id);
+    await resetIngresses(user.id);
 
-  if (!user) {
-    throw new Error("Unauthorize user!");
-  }
+    if (!user) {
+      throw new Error("Unauthorize user!");
+    }
 
-  const ingressOptions: CreateIngressOptions = {
-    roomName: user.id,
-    name: user.username,
-    participantIdentity: user.id,
-    participantName: user.username,
-  };
-
-  if (ingressType === IngressInput.WHIP_INPUT) {
-    ingressOptions.bypassTranscoding = true;
-  } else {
-    ingressOptions.video = {
-      source: TrackSource.CAMERA,
-      preset: IngressVideoEncodingPreset.H264_1080P_30FPS_3_LAYERS,
+    const ingressOptions: CreateIngressOptions = {
+      roomName: user.id,
+      name: user.username,
+      participantIdentity: user.id,
+      participantName: user.username,
     };
-    ingressOptions.audio = {
-      source: TrackSource.MICROPHONE,
-      preset: IngressAudioEncodingPreset.OPUS_STEREO_96KBPS,
-    };
+
+    if (ingressType === IngressInput.WHIP_INPUT) {
+      ingressOptions.bypassTranscoding = true;
+    } else {
+      ingressOptions.video = {
+        source: TrackSource.CAMERA,
+        preset: IngressVideoEncodingPreset.H264_1080P_30FPS_3_LAYERS,
+      };
+      ingressOptions.audio = {
+        source: TrackSource.MICROPHONE,
+        preset: IngressAudioEncodingPreset.OPUS_STEREO_96KBPS,
+      };
+    }
+
+    const ingress = await ingressClient.createIngress(
+      ingressType,
+      ingressOptions
+    );
+
+    if (!ingress || !ingress.streamKey || !ingress.url) {
+      throw new Error("Something went wrong when creating ingress");
+    }
+
+    await db.stream.update({
+      where: {
+        userId: user.id,
+      },
+      data: {
+        streamKey: ingress.streamKey,
+        serverUrl: ingress.url,
+        ingressId: ingress.ingressId,
+      },
+    });
+
+    revalidatePath(`/u/${user.username}/keys`);
+    return ingress;
+  } catch (error: any) {
+    console.log(error.message, error);
   }
-
-  const ingress = await ingressClient.createIngress(
-    ingressType,
-    ingressOptions
-  );
-
-  if (!ingress || !ingress.streamKey || !ingress.url) {
-    throw new Error("Something went wrong when creating ingress");
-  }
-
-  await db.stream.update({
-    where: {
-      userId: user.id,
-    },
-    data: {
-      streamKey: ingress.streamKey,
-      serverUrl: ingress.url,
-      ingressId: ingress.ingressId,
-    },
-  });
-
-  revalidatePath(`/u/${user.username}/keys`);
-  return ingress;
 }

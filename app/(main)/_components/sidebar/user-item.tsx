@@ -21,6 +21,7 @@ const UserItem = ({ user, showBadge, isLive }: UserItemProps) => {
   const { collapsed } = useSidebarStore();
   const href = `/${user.username}`;
   const isActive = pathname === href;
+  console.log(isLive, user.username);
 
   return (
     <Link

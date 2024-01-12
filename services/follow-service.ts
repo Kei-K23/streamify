@@ -18,7 +18,11 @@ export async function getAllFollowingUsers() {
         },
       },
       include: {
-        following: true,
+        following: {
+          include: {
+            stream: true,
+          },
+        },
       },
     });
   } catch (e) {

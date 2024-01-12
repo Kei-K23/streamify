@@ -3,10 +3,10 @@
 import { useSidebarStore } from "@/store/use-sidebar";
 import React from "react";
 import UserItem from "./user-item";
-import { Follow, User } from "@prisma/client";
+import { Follow, Stream, User } from "@prisma/client";
 
 interface FollowingUserProps {
-  data: (Follow & { following: User })[];
+  data: (Follow & { following: User & { stream: Stream | null } })[];
 }
 
 const FollowingUser = ({ data }: FollowingUserProps) => {
@@ -27,7 +27,11 @@ const FollowingUser = ({ data }: FollowingUserProps) => {
       <div className="space-y-4 mt-2">
         {data &&
           data.map((user) => (
-            <UserItem key={user.following.id} user={user.following} />
+            <UserItem
+              key={user.following.id}
+              user={user.following}
+              isLive={user.following.stream?.isLive}
+            />
           ))}
       </div>
     </div>
