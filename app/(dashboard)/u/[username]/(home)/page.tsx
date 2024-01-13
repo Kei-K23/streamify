@@ -14,6 +14,7 @@ const CreateHomePage = async ({ params }: { params: { username: string } }) => {
   ) {
     throw new Error("Unauthorized user!");
   }
+
   return (
     <div className="h-full">
       <StreamPlayer user={user} stream={user.stream} isFollowing={true} />

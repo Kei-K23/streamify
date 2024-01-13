@@ -8,6 +8,15 @@ body,
   height: 100%;
 }
 
+.hidden-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.hidden-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -43,32 +52,40 @@ body,
 
   /* zinc dark */
   .dark {
-    --background: 20 3% 10%; /* Darker background color */
+    --background: 20 3% 10%;
+    /* Darker background color */
     --foreground: 0 0% 98%;
 
-    --card: 20 3% 10%; /* Darker card color */
+    --card: 20 3% 10%;
+    /* Darker card color */
     --card-foreground: 0 0% 98%;
 
-    --popover: 20 3% 10%; /* Darker popover color */
+    --popover: 20 3% 10%;
+    /* Darker popover color */
     --popover-foreground: 0 0% 98%;
 
     --primary: 0 0% 98%;
     --primary-foreground: 240 5.9% 10%;
 
-    --secondary: 39 4% 21%; /* Adjusted secondary color */
+    --secondary: 39 4% 21%;
+    /* Adjusted secondary color */
     --secondary-foreground: 0 0% 98%;
 
-    --muted: 39 4% 21%; /* Adjusted muted color */
+    --muted: 39 4% 21%;
+    /* Adjusted muted color */
     --muted-foreground: 240 5% 64.9%;
 
-    --accent: 39 4% 21%; /* Adjusted accent color */
+    --accent: 39 4% 21%;
+    /* Adjusted accent color */
     --accent-foreground: 0 0% 98%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 39 4% 21%; /* Adjusted border color */
-    --input: 39 4% 21%; /* Adjusted input color */
+    --border: 39 4% 21%;
+    /* Adjusted border color */
+    --input: 39 4% 21%;
+    /* Adjusted input color */
     --ring: 240 4.9% 83.9%;
   }
 }
@@ -77,6 +94,7 @@ body,
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
   }
