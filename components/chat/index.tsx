@@ -98,4 +98,14 @@ const Chat = ({
   );
 };
 
+Chat.Skeleton = function ChatSkeleton() {
+  return (
+    <div className="bg-zinc-800 border-l border-b flex flex-col pt-0 h-[calc(100vh-80px)]">
+      <Header.Skeleton />
+      <ChatMessagesList.Skeleton />
+      <ChatForm.Skeleton />
+    </div>
+  );
+};
+
 export default Chat;
