@@ -12,7 +12,7 @@ const FullscreenControl = ({ isFullscreen, onToggle }: FullscreenControl) => {
   const label = isFullscreen ? "Exit full screen" : "Enter full screen";
 
   return (
-    <div className="flex items-center justify-center gap-4">
+    <div>
       <ActionTooltip title={label}>
         <button onClick={onToggle}>
           <Icon className="w-5 h-5" />
