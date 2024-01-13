@@ -12,6 +12,7 @@ import { useMediaQuery } from "usehooks-ts";
 import Header from "./header";
 import ChatForm from "./chat-form";
 import ChatMessagesList from "./chat-messages-list";
+import ChatCommunity from "./chat-community";
 
 interface ChatProps {
   viewerName: string;
@@ -85,7 +86,13 @@ const Chat = ({
             />
           </>
         )}
-        {variant === CHAT_VARIANT.COMMUNITY && <p>community</p>}
+        {variant === CHAT_VARIANT.COMMUNITY && (
+          <ChatCommunity
+            isHidden={isHidden}
+            viewerName={viewerName}
+            hostName={hostName}
+          />
+        )}
       </>
     </div>
   );
