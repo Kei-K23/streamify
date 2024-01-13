@@ -5,5 +5,19 @@ export async function getUserByUsername(username: string) {
     where: {
       username,
     },
+    include: {
+      stream: true,
+    },
+  });
+}
+
+export async function getUserById(id: string) {
+  return db.user.findUnique({
+    where: {
+      id,
+    },
+    include: {
+      stream: true,
+    },
   });
 }

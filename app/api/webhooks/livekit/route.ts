@@ -32,8 +32,6 @@ export async function POST(req: NextRequest) {
   if (isStreamExist) {
     // live is end
     if (event.event === "ingress_ended") {
-      console.log(event.ingressInfo?.ingressId);
-
       await db.stream.update({
         where: {
           ingressId: event.ingressInfo?.ingressId,
@@ -46,8 +44,6 @@ export async function POST(req: NextRequest) {
 
     // live is start
     if (event.event === "ingress_started") {
-      console.log(event.ingressInfo?.ingressId);
-
       await db.stream.update({
         where: {
           ingressId: event.ingressInfo?.ingressId,
