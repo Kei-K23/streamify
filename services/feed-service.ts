@@ -52,4 +52,6 @@ export async function getStreams() {
       ],
     });
   }
+
+  return streams;
 }
