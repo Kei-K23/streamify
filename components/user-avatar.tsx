@@ -10,7 +10,7 @@ const avatarSize = cva("", {
   variants: {
     size: {
       default: "w-8 h-8",
-      lg: "w-4 h-14",
+      lg: "w-14 h-14",
     },
   },
   defaultVariants: {
@@ -19,7 +19,7 @@ const avatarSize = cva("", {
 });
 
 interface UserAvatarProps extends VariantProps<typeof avatarSize> {
-  user: User;
+  user?: User;
   showBadge?: boolean;
   isLive?: boolean;
 }
@@ -34,8 +34,8 @@ const UserAvatar = ({ user, isLive, showBadge, ...props }: UserAvatarProps) => {
           avatarSize({ size: props.size })
         )}
       >
-        <AvatarImage src={user.imageUrl!} className="object-cover" />
-        <AvatarFallback>{user.username}</AvatarFallback>
+        <AvatarImage src={user?.imageUrl!} className="object-cover" />
+        <AvatarFallback>{user?.username}</AvatarFallback>
       </Avatar>
       {canShowBadge && (
         <div className="absolute -bottom-3 left-1/2 -translate-x-1/2">

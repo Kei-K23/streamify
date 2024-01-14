@@ -9,6 +9,7 @@ import { useChatSidebarStore } from "@/store/use-chat-sidebar";
 import { cn } from "@/lib/utils";
 import Chat from "../chat";
 import ChatToggle from "../chat/chat-toggle";
+import VideoHeader from "./video-header";
 
 interface StreamPlayerProps {
   user: User;
@@ -41,6 +42,12 @@ const StreamPlayer = ({ user, stream, isFollowing }: StreamPlayerProps) => {
       >
         <div className="space-y-4 col-span-1 lg:col-span-2 xl:col-span-2 2xl:col-span-5 lg:overflow-y-auto hidden-scrollbar pb-10">
           <Video hostName={user.username} hostIdentity={user.id} />
+          <VideoHeader
+            streamName={stream.name}
+            hostUser={user}
+            viewerIdentity={identity}
+            isFollowing={isFollowing}
+          />
         </div>
 
         <div className={cn("col-span-1", collapsed && "hidden")}>
@@ -64,6 +71,7 @@ StreamPlayer.Skeleton = function StreamPlayerSkeleton() {
     <div className="grid grid-cols-1 lg:gap-y-0 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-6 h-full">
       <div className="space-y-4 col-span-1 lg:col-span-2 xl:col-span-2 2xl:col-span-5 lg:overflow-y-auto hidden-scrollbar pb-10">
         <Video.Skeleton />
+        <VideoHeader.Skeleton />
       </div>
       <div className="col-span-1 bg-background">
         <Chat.Skeleton />
