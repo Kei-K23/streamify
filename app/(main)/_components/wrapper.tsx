@@ -21,7 +21,12 @@ const MainSidebarWrapper = ({ children }: MainSidebarWrapperProps) => {
     }
   }, [matches, onCollapsed, onExpand]);
   return (
-    <div className={cn(collapsed ? "ml-[70px]" : "ml-[70px] lg:ml-60")}>
+    <div
+      className={cn(
+        "w-full h-full",
+        collapsed ? "ml-[70px]" : "ml-[70px] lg:ml-60"
+      )}
+    >
       {children}
     </div>
   );

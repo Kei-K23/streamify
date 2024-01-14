@@ -7,6 +7,7 @@ export async function getUserByUsername(username: string) {
     },
     include: {
       followers: true,
+      followings: true,
       stream: true,
     },
   });

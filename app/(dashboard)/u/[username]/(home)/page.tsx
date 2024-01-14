@@ -17,7 +17,7 @@ const CreateHomePage = async ({ params }: { params: { username: string } }) => {
   return (
     <div className="h-full">
       <StreamPlayer
-        followersCount={user.followers.length}
+        followersCount={user.followings.length}
         user={user}
         stream={user.stream}
         isFollowing={true}

@@ -8,10 +8,7 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
     <div>
       <Navbar />
       <div className="pt-[70px] flex h-full">
-        {/* TODO: Check suspense and skeleton loading */}
-        {/* <Suspense fallback={<Sidebar.Skeleton />}> */}
         <Sidebar />
-        {/* </Suspense> */}
         <MainSidebarWrapper>{children}</MainSidebarWrapper>
       </div>
     </div>
