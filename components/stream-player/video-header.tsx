@@ -76,12 +76,12 @@ VideoHeader.Skeleton = function VideoHeaderSkeleton() {
     <div className="flex flex-col md:flex-row gap-y-4 md:gap-y-0 items-start justify-between p-4">
       <div className="flex items-start gap-x-3">
         <UserAvatar size={"lg"} />
-        <div className="space-y-1">
+        <div className="space-y-3">
           <div className="flex items-center gap-x-2">
-            <Skeleton className="w-[100px] h-6" />
+            <Skeleton className="w-[100px] h-3" />
           </div>
-          <Skeleton className="w-[50px] h-5" />
-          <Skeleton className="w-[50px] h-5" />
+          <Skeleton className="w-[60px] h-3" />
+          <Skeleton className="w-[60px] h-3" />
         </div>
       </div>
       <Action.Skeleton />

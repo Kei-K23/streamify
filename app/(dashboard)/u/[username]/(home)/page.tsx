@@ -6,7 +6,6 @@ import React from "react";
 const CreateHomePage = async ({ params }: { params: { username: string } }) => {
   const clerkUser = await currentUser();
   const user = await getUserByUsername(clerkUser.username);
-
   if (
     clerkUser.externalUserId !== user?.externalUserId ||
     !user ||
@@ -17,7 +16,12 @@ const CreateHomePage = async ({ params }: { params: { username: string } }) => {
 
   return (
     <div className="h-full">
-      <StreamPlayer user={user} stream={user.stream} isFollowing={true} />
+      <StreamPlayer
+        followersCount={user.followers.length}
+        user={user}
+        stream={user.stream}
+        isFollowing={true}
+      />
     </div>
   );
 };

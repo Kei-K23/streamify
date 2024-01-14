@@ -3,6 +3,7 @@ import React from "react";
 import { Separator } from "../ui/separator";
 import Image from "next/image";
 import InfoModal from "./info-modal";
+import { Skeleton } from "../ui/skeleton";
 
 interface InfoCardProps {
   streamName: string;
@@ -66,6 +67,25 @@ const InfoCard = ({
             )}
           </div>
         </div>
+      </div>
+    </div>
+  );
+};
+
+InfoCard.Skeleton = function InfoCardSkeleton() {
+  return (
+    <div className="p-4">
+      <div className="bg-zinc-800 p-4 rounded-md space-y-3">
+        <div className="flex justify-between items-center">
+          <div className="flex items-center gap-x-2">
+            <Skeleton className="w-[150px] h-3.5" />
+          </div>
+        </div>
+        <div className="space-y-4">
+          <Skeleton className="w-[70px] h-3.5" />
+          <Skeleton className="w-[100px] h-3.5" />
+        </div>
+        <Skeleton className="w-[300px] h-[100px]" />
       </div>
     </div>
   );
