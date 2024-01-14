@@ -10,6 +10,7 @@ import { cn } from "@/lib/utils";
 import Chat from "../chat";
 import ChatToggle from "../chat/chat-toggle";
 import VideoHeader from "./video-header";
+import InfoCard from "./info-card";
 
 interface StreamPlayerProps {
   user: User;
@@ -47,6 +48,12 @@ const StreamPlayer = ({ user, stream, isFollowing }: StreamPlayerProps) => {
             hostUser={user}
             viewerIdentity={identity}
             isFollowing={isFollowing}
+          />
+          <InfoCard
+            hostIdentity={user.id}
+            thumbnailImg={stream.thumbnailImg}
+            viewerIdentity={identity}
+            streamName={stream.name}
           />
         </div>
 

@@ -35,7 +35,7 @@ const VideoHeader = ({
   const isHost = viewerIdentity === hostAsViewer;
 
   return (
-    <div className="flex flex-col lg:flex-row gap-y-4 lg:gap-y-0 items-start justify-between p-4">
+    <div className="flex flex-col md:flex-row gap-y-4 md:gap-y-0 items-start justify-between p-4">
       <div className="flex items-start gap-x-3">
         <UserAvatar
           user={hostUser}
@@ -73,7 +73,7 @@ const VideoHeader = ({
 
 VideoHeader.Skeleton = function VideoHeaderSkeleton() {
   return (
-    <div className="flex flex-col lg:flex-row gap-y-4 lg:gap-y-0 items-start justify-between p-4">
+    <div className="flex flex-col md:flex-row gap-y-4 md:gap-y-0 items-start justify-between p-4">
       <div className="flex items-start gap-x-3">
         <UserAvatar size={"lg"} />
         <div className="space-y-1">

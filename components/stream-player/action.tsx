@@ -59,7 +59,7 @@ const Action = ({ isHost, isFollowing, hostIdentity }: ActionProps) => {
     <Button
       disabled={isPending || isHost}
       variant={"primary"}
-      className="w-full lg:w-auto"
+      className="w-full md:w-auto"
       onClick={onToggleFollow}
     >
       <HeartIcon
