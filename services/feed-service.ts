@@ -16,13 +16,22 @@ export async function getStreams() {
     streams = await db.stream.findMany({
       where: {
         user: {
-          NOT: {
-            blockings: {
-              some: {
-                blockingId: userId,
+          AND: [
+            {
+              NOT: {
+                id: userId,
               },
             },
-          },
+            {
+              NOT: {
+                blockers: {
+                  some: {
+                    blockingId: userId,
+                  },
+                },
+              },
+            },
+          ],
         },
       },
       include: {
@@ -81,13 +90,22 @@ export async function getStreamsByTerms(term: string) {
           { name: { contains: term } },
         ],
         user: {
-          NOT: {
-            blockings: {
-              some: {
-                blockingId: userId,
+          AND: [
+            {
+              NOT: {
+                id: userId,
               },
             },
-          },
+            {
+              NOT: {
+                blockers: {
+                  some: {
+                    blockingId: userId,
+                  },
+                },
+              },
+            },
+          ],
         },
       },
       include: {
