@@ -1,4 +1,3 @@
-import { UserButton } from "@clerk/nextjs";
 import Result from "./_components/result";
 import { Suspense } from "react";
 

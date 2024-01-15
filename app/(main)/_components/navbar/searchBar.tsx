@@ -14,7 +14,6 @@ const NavbarSearchBar = () => {
   function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    if (!value) return;
     const url = qs.stringifyUrl(
       {
         url: "/search",
